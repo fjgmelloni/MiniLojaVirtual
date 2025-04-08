@@ -5,6 +5,8 @@
 
 Esse é o Projeto do Modulo 1 do MBA DevXpert do desenvolvedor.io
 
+**Está pronto para baixar e rodar!**
+
 Este projeto é uma aplicação web para gestão de uma mini loja virtual. Ele permite aos vendedores realizar o cadastro, edição, visualização e remoção de produtos e categorias. Além disso, a plataforma oferece autenticação de usuários, API RESTful, e integração com JWT para segurança de rotas. A solução está implementada utilizando ASP.NET Core MVC, Entity Framework Core, SQLite e Swagger para documentação da API.
 
 **Autor:** Felicio Melloni
