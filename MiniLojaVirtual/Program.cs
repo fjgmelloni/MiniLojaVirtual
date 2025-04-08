@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+ï»¿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -30,10 +30,10 @@ var jwtAudience = jwtConfig["Audience"];
 
 builder.Services.AddAuthentication(options =>
 {
-    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultAuthenticateScheme = IdentityConstants.ApplicationScheme; // Para MVC (cookies)
+    options.DefaultChallengeScheme = IdentityConstants.ApplicationScheme;
 })
-.AddJwtBearer(options =>
+.AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options =>
 {
     options.RequireHttpsMetadata = false;
     options.SaveToken = true;
@@ -107,7 +107,7 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseCors();             // Ativar CORS
-app.UseAuthentication();   // Autenticação JWT
+app.UseAuthentication();   // Autenticaï¿½ï¿½o JWT
 app.UseAuthorization();
 
 app.MapControllerRoute(
@@ -116,3 +116,4 @@ app.MapControllerRoute(
 app.MapRazorPages();
 
 app.Run();
+
