@@ -142,5 +142,3 @@ Caso tenha dúvidas ou sugestões, entre em contato:
 - **GitHub**: [https://github.com/fjgmelloni](https://github.com/fjgmelloni)
 
 ---
-
-Este README é um guia básico para a configuração e uso do projeto. Sinta-se à vontade para adicionar melhorias ou sugestões!
