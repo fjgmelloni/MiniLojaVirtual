@@ -1,0 +1,39 @@
+@model IEnumerable<MiniLojaVirtual.Core.Models.Categoria>
+
+@{
+    ViewData["Title"] = "Categorias";
+}
+
+<h2>Categorias</h2>
+
+@if (TempData["Erro"] != null)
+{
+    <div class="alert alert-danger">@TempData["Erro"]</div>
+}
+
+<p>
+    <a class="btn btn-primary" asp-action="Create">Nova Categoria</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Descrição</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Nome</td>
+            <td>@item.Descricao</td>
+            <td>
+                <a class="btn btn-sm btn-warning" asp-action="Edit" asp-route-id="@item.Id">Editar</a>
+                <a class="btn btn-sm btn-danger" asp-action="Delete" asp-route-id="@item.Id">Excluir</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

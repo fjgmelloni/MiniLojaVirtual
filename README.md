@@ -1,146 +1,57 @@
+# README.md
 
-# Mini Loja Virtual - Gestão de Produtos e Categorias
+### Mini Loja Virtual — Projeto Módulo 01 MBA DevXpert
 
-## Sobre o Projeto
-
-Esse é o Projeto do Modulo 1 do MBA DevXpert do desenvolvedor.io
-
-**Está pronto para baixar e rodar!**
-
-Este projeto é uma aplicação web para gestão de uma mini loja virtual. Ele permite aos vendedores realizar o cadastro, edição, visualização e remoção de produtos e categorias. Além disso, a plataforma oferece autenticação de usuários, API RESTful, e integração com JWT para segurança de rotas. A solução está implementada utilizando ASP.NET Core MVC, Entity Framework Core, SQLite e Swagger para documentação da API.
-
-**Autor:** Felicio Melloni
+Este projeto é uma aplicação web completa com back-end em ASP.NET Core 9.0, separada em três camadas:
+- **MiniLojaVirtual.Core**: entidades, contexto e seed de dados
+- **MiniLojaVirtual.Api**: API RESTful com autenticação JWT
+- **MiniLojaVirtual.Web**: front-end MVC com autenticação por cookie
 
 ---
 
-## Tecnologias Utilizadas
-
-- **ASP.NET Core MVC**: Para a criação da interface web da aplicação.
-- **Entity Framework Core**: Para a interação com o banco de dados SQLite.
-- **SQLite**: Banco de dados utilizado para persistência de dados.
-- **JWT (JSON Web Token)**: Para autenticação e autorização de usuários via token.
-- **Swagger**: Para documentação da API RESTful.
-- **CORS**: Para permitir que a aplicação seja acessada por diferentes origens durante o desenvolvimento.
-- **ASP.NET Core Identity**: Para o gerenciamento de usuários e autenticação.
-  
----
-
-## Funcionalidades
-
-- **Cadastro de Categorias**: Os usuários podem cadastrar, editar e excluir categorias de produtos.
-- **Cadastro de Produtos**: Os vendedores podem cadastrar, editar e excluir produtos, associando-os a uma categoria.
-- **Autenticação de Usuários**: Utilizando o ASP.NET Core Identity para registrar e autenticar usuários.
-- **API RESTful**: Exposição de endpoints para CRUD de produtos e categorias. Proteção das rotas com JWT.
-- **Visualização de Produtos**: Exibição dos produtos na página inicial com informações sobre nome, descrição, preço, estoque, e imagem.
+### Funcionalidades
+- Cadastro e login de vendedores via Identity
+- Autenticação protegida com JWT na API
+- CRUD de **Produtos** com vínculo ao vendedor logado
+- CRUD de **Categorias**, com validação para não excluir se houver produtos
+- Listagem pública de produtos e busca por categoria
+- Vitrine com produtos no front-end
 
 ---
 
-## Configuração e Instalação
+### Como executar o projeto
 
-### Pré-requisitos
+1. Clone o repositório e abra a solution `.sln` no Visual Studio
 
-- **.NET SDK**: Versão 8.0 ou superior.
-- **Visual Studio 2022** ou outro editor de sua escolha com suporte ao ASP.NET Core.
-- **SQLite**: Banco de dados embutido (não há necessidade de instalar o SQL Server ou qualquer outra base de dados).
+2. Certifique-se de que os 3 projetos estejam incluídos:
+   - `MiniLojaVirtual.Core`
+   - `MiniLojaVirtual.Api`
+   - `MiniLojaVirtual.Web`
 
-### Passos para rodar o projeto
+3. **Banco de dados**: será criado automaticamente com SQLite ao executar a aplicação.
+   - Local: `MiniLojaVirtual.Core/loja.db`
 
-1. **Clone o repositório**:
-   
-   ```bash
-   git clone https://github.com/fjgmelloni/MiniLojaVirtual
-   ```
+4. Ao Compilar:
+   - O banco é migrado automaticamente
+   - Um usuário de teste será criado:
+     - Email: `felicio@felicio.com`
+     - Senha: `Felicio#12`
 
-2. **Instale os pacotes NuGet**:
-   
-   Execute o comando no Visual Studio ou no terminal:
+5. Acesse a interface Web:
+   - `http://localhost:5145`
 
-   ```bash
-   dotnet restore
-   ```
+6. Acesse a API com Swagger:
+   - `http://localhost:5062` (ou porta configurada)
 
-3. **Configuração do banco de dados**:
-   
-   Após restaurar os pacotes, crie as migrações e aplique-as ao banco de dados:
-
-   ```bash
-   dotnet ef migrations add InitialCreate
-   dotnet ef database update
-   ```
-
-4. **Configuração do `appsettings.json`**:
-
-   No arquivo `appsettings.json`, ajuste a chave JWT para a sua configuração:
-
-   ```json
-   "Jwt": {
-       "Key": "SUA_CHAVE_SECRETA_AQUI",
-       "Issuer": "MiniLojaVirtual",
-       "Audience": "MiniLojaVirtualAPI",
-       "ExpireHours": 3
-   }
-   ```
-
-5. **Executando a aplicação**:
-
-   Após as configurações, você pode iniciar o servidor de desenvolvimento:
-
-   ```bash
-   dotnet run
-   ```
-
-6. **Acessando o Swagger**:
-
-   Após iniciar o servidor, você pode acessar a documentação da API via Swagger:
-
-   [http://localhost:5000/swagger](http://localhost:5000/swagger)
+7. Para testar endpoints protegidos:
+   - Faça login via `/api/Auth/login`
+   - Use o token no botão **Authorize** do Swagger (Bearer TOKEN)
 
 ---
 
-## Testes de API
-
-### Login
-
-- **Endpoint**: `POST /api/auth/login`
-- **Body**:
-
-   ```json
-   {
-       "email": "usuario@exemplo.com",
-       "senha": "senha123"
-   }
-   ```
-
-- **Resposta**:
-
-   Se o login for bem-sucedido, você receberá um token JWT:
-
-   ```json
-   {
-       "token": "seu_token_jwt_aqui"
-   }
-   ```
-
-### Produtos
-
-- **Listar Produtos**: `GET /api/produtos`
-- **Criar Produto**: `POST /api/produtos`
-- **Editar Produto**: `PUT /api/produtos/{id}`
-- **Excluir Produto**: `DELETE /api/produtos/{id}`
-
----
-
-## Autenticação e Autorização
-
-A autenticação na aplicação é realizada utilizando o **ASP.NET Core Identity**, onde o usuário pode fazer login via email e senha. Após o login, um token JWT é gerado e utilizado para autenticar as requisições às rotas da API.
-
----
-
-## Contato
-
-Caso tenha dúvidas ou sugestões, entre em contato:
-
-- **E-mail**: feliciomelloni@live.com
-- **GitHub**: [https://github.com/fjgmelloni](https://github.com/fjgmelloni)
-
----
+### Tecnologias usadas
+- ASP.NET Core 9.0
+- Entity Framework Core + SQLite
+- ASP.NET Identity
+- JWT Bearer Authentication
+- Swagger para documentação da API
