@@ -1,62 +1,90 @@
 # Feedback - Avaliação Geral
 
 ## Front End
+
 ### Navegação
   * Pontos positivos:
-    - O projeto possui views e rotas definidas para as funcionalidades, seguindo o padrão do ASP.NET Core MVC. As views estão presentes e permitem a navegação entre as principais operações de produtos e categorias.
-
-### Design
-    - Será avaliado na entrega final
-
-### Funcionalidade
-  * Pontos positivos:
-    - As funcionalidades de cadastro, edição, visualização e exclusão de produtos e categorias estão implementadas no front-end, conforme os casos de uso esperados para uma mini loja virtual.
-
-## Back End
-### Arquitetura
-  * Pontos positivos:
-    - O projeto utiliza uma arquitetura simples, adequada para um CRUD básico, com uso do padrão MVC.
+    - Projeto MVC com rotas e views funcionais para produtos, categorias e autenticação.
+    - Estrutura clara para navegação administrativa.
 
   * Pontos negativos:
-    - A implementação da API RESTful está misturada ao projeto MVC, ou seja, não há separação clara entre API e front-end. Isso não segue a recomendação de separação de responsabilidades por camadas/projetos distintos.
-    - As responsabilidades de negócio estão concentradas nas Controllers,o que não é um problema para tamanha complexidade do projeto, mas irá gerar duplicação de código na implementação das controllers da API.
-    - Para esse desafio ter projetos (MVC, API, Core) como solução seria a melhor decisão.
+    - Nenhum.
+
+### Design
+  - Layout simples e objetivo, funcional para o gerenciamento administrativo da loja.
 
 ### Funcionalidade
   * Pontos positivos:
-    - As operações CRUD para produtos e categorias estão implementadas e expostas tanto via views quanto via endpoints de API.
-    - O projeto utiliza Entity Framework Core com SQLite, conforme especificação.
+    - CRUD implementado em API e MVC.
+    - Identity implementado corretamente com JWT na API e Cookie no MVC.
+    - Migrations automáticas e seed de dados configurados com SQLite.
+    - Arquitetura enxuta com as três camadas essenciais (API, Core, MVC).
+    - Modelagem das entidades está adequada e coerente.
+
+  * Pontos negativos:
+    - A criação do vendedor com o ID compartilhado do Identity não está implementada em nenhuma das camadas (API ou MVC).
+    - A inicialização do seed/migrations está comentada no `Program.cs` da aplicação MVC.
+    - `Program.cs` da API e do MVC está verboso e poderia ser refatorado com abstrações/modularizações.
+
+## Back End
+
+### Arquitetura
+  * Pontos positivos:
+    - Divisão entre API, Core e MVC clara e funcional.
+    - Estrutura de pasta e uso de arquivos `.sln` organizados.
+
+  * Pontos negativos:
+    - Falta abstração em `Program.cs` e organização de inicializações.
+
+### Funcionalidade
+  * Pontos positivos:
+    - Operações principais de CRUD e autenticação funcionam conforme esperado.
+
+  * Pontos negativos:
+    - A ausência de criação do vendedor com o usuário do Identity.
+    - Seed de dados não ativo na aplicação MVC (apenas comentado).
 
 ### Modelagem
   * Pontos positivos:
-    - A modelagem das entidades é simples e direta, adequada para o contexto de uma mini loja virtual.
-    - O uso direto do contexto do EF Core é aceitável para o escopo do projeto.
+    - Modelagem enxuta, organizada e aderente ao escopo proposto.
 
   * Pontos negativos:
-    - As regras de negócio estão implementadas diretamente nas Controllers, o que não é recomendado. O ideal seria extrair essas regras para uma camada de serviço, mesmo em projetos simples, para melhor organização e manutenção e evitar a duplicação entre MVC e API
+    - Nenhum.
 
 ## Projeto
+
 ### Organização
   * Pontos positivos:
-    - O projeto está organizado em pastas, com separação de controllers, views e models, seguindo o padrão do ASP.NET Core MVC.
-    - O arquivo de solução (`MiniLojaVirtual.sln`) está presente na raiz do repositório.
+    - Estrutura organizada com `src`, `.sln` na raiz e documentação presente.
+    - Código limpo e organizado.
 
   * Pontos negativos:
-    - Não há uso da pasta `src` na raiz, mas a estrutura está adequada para projetos de pequeno porte.
+    - Nenhum ponto estrutural grave, apenas melhorias em boas práticas mencionadas.
 
 ### Documentação
   * Pontos positivos:
-    - O repositório possui um arquivo `README.md` bem documentado, com informações do projeto e instruções de execução.
-    - A documentação da API via Swagger está presente.
-
-  * Pontos negativos:
-    - O arquivo `FEEDBACK.md` não foi encontrado no repositório.
+    - `README.md` e `FEEDBACK.md` presentes com orientações básicas.
+    - Swagger na API.
 
 ### Instalação
   * Pontos positivos:
-    - O projeto utiliza SQLite como banco de dados.
-    - O README orienta sobre a criação e aplicação de migrations, facilitando a configuração inicial.
+    - SQLite funcional, migrations automáticas e seed (com ressalvas) implementado.
 
   * Pontos negativos:
-    - Não foi identificada a implementação de seed de dados e migrations automática no start da aplicação. 
-    - Recomenda-se adicionar essa funcionalidade para facilitar o uso e testes do sistema.
+    - Seed de dados comentado no `Program.cs` da camada MVC.
+
+---
+
+# 📊 Matriz de Avaliação de Projetos
+
+| **Critério**                   | **Peso** | **Nota** | **Resultado Ponderado**                  |
+|-------------------------------|----------|----------|------------------------------------------|
+| **Funcionalidade**            | 30%      | 9        | 2,7                                      |
+| **Qualidade do Código**       | 20%      | 9        | 1,8                                      |
+| **Eficiência e Desempenho**   | 20%      | 9        | 1,8                                      |
+| **Inovação e Diferenciais**   | 10%      | 9        | 0,9                                      |
+| **Documentação e Organização**| 10%      | 10       | 1,0                                      |
+| **Resolução de Feedbacks**    | 10%      | 10       | 1,0                                      |
+| **Total**                     | 100%     | -        | **9,2**                                  |
+
+## 🎯 **Nota Final: 9,2 / 10**
